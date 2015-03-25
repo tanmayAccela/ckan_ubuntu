@@ -1,0 +1,35 @@
+{% ckan_extends %}
+
+{% block extras %}
+  {% if pkg_dict.modified %}
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("Modified (Last Updated)") }}</th>
+      <td class="dataset-details">{{ pkg_dict.modified }}</td>
+    </tr>
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("Publisher (Agency)") }}</th>
+      <td class="dataset-details">{{ pkg_dict.publisher }}</td>
+    </tr>
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("Identifier (Any UniqueID)") }}</th>
+      <td class="dataset-details">{{ pkg_dict.identifier }}</td>
+    </tr>
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("Bureau Code") }}</th>
+      <td class="dataset-details">{{ pkg_dict.bureau_code }}</td>
+    </tr>
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("Program Code") }}</th>
+      <td class="dataset-details">{{ pkg_dict.prog_code }}</td>
+    </tr>
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("Contact Name") }}</th>
+      <td class="dataset-details">{{ pkg_dict.contact_name }}</td>
+    </tr>
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("Contact Email") }}</th>
+      <td class="dataset-details">{{ pkg_dict.contact_email }}</td>
+    </tr>
+    
+  {% endif %}
+{% endblock %}

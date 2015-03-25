@@ -1,0 +1,13 @@
+{% ckan_extends %}
+
+{% block package_basic_fields_custom %}
+  {{ form.input('modified', label=_('Modified (Last Updated) *'), id='field-modified', placeholder=_('YYYY-MM-DD'), value=data.modified, error=errors.modified, classes=['control-medium']) }}
+  {{ form.input('publisher', label=_('Publisher (Agency) *'), id='field-publisher', placeholder=_('Agency Name'), value=data.publisher, error=errors.publisher, classes=['control-medium']) }}
+  {{ form.input('identifier', label=_('Identifier (UniqueID) *'), id='field-identifier', placeholder=_('Any random Unique ID'), value=data.identifier, error=errors.identifier, classes=['control-medium']) }}
+  {{ form.input('bureau_code', label=_('Bureau Code *'), id='field-bureau_code', placeholder=_('Bureau Code'), value=data.bureau_code, error=errors.bureau_code, classes=['control-medium']) }}
+  {{ form.input('prog_code', label=_('Program Code *'), id='field-prog_code', placeholder=_('Program Code'), value=data.prog_code, error=errors.prog_code, classes=['control-medium']) }}
+  {{ form.input('contact_name', label=_('Contact Name *'), id='field-contact_name', placeholder=_('First-name Last-name '), value=data.contact_name, error=errors.contact_name, classes=['control-medium']) }}
+  {{ form.input('contact_email', label=_('Contact Email *'), id='field-contact_email', placeholder=_('email ID'), value=data.contact_email, error=errors.contact_email, classes=['control-medium']) }}
+  {#{{ form.input('access_level', label =_('Access Level *'), id='field-access_level', value= h.access_levels(), error=errors.access_level, classes=['control-group']) }}#}
+{% endblock %}
+
