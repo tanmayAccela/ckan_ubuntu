@@ -36,14 +36,14 @@ class MyPlugin(p.SingletonPlugin, tk.DefaultDatasetForm):
     #add all the extra fields here
     def _modify_package_schema(self, schema):
         schema.update({ 
-                       'modified': [tk.get_validator('isodate'), tk.get_converter('convert_to_extras')], 
-                       'publisher': [tk.get_validator('not_empty'), tk.get_converter('convert_to_extras')],
-                       'identifier': [tk.get_validator('not_empty'), tk.get_converter('convert_to_extras')],
+                       'modified': [tk.get_validator('ignore_missing'), tk.get_converter('convert_to_extras')], 
+                       'publisher': [tk.get_validator('ignore_missing'), tk.get_converter('convert_to_extras')],
+                       'identifier': [tk.get_validator('ignore_missing'), tk.get_converter('convert_to_extras')],
                        'Access Level': [tk.get_validator('ignore_missing'), tk.get_converter('convert_to_tags')('access_levels')],
-                       'bureau_code': [tk.get_validator('not_empty'), tk.get_converter('convert_to_extras')],
-                       'prog_code': [tk.get_validator('not_empty'), tk.get_converter('convert_to_extras')],
-                       'contact_name': [tk.get_validator('not_empty'), tk.get_converter('convert_to_extras')],
-                       'contact_email': [v.Email(), tk.get_converter('convert_to_extras')]
+                       'bureau_code': [tk.get_validator('ignore_missing'), tk.get_converter('convert_to_extras')],
+                       'prog_code': [tk.get_validator('ignore_missing'), tk.get_converter('convert_to_extras')],
+                       'contact_name': [tk.get_validator('ignore_missing'), tk.get_converter('convert_to_extras')],
+                       'contact_email': [tk.get_validator('ignore_missing'), tk.get_converter('convert_to_extras')]
         })
         # Add our custom_resource_text metadata field to the schema
         '''
@@ -70,12 +70,12 @@ class MyPlugin(p.SingletonPlugin, tk.DefaultDatasetForm):
         schema = super(MyPlugin, self).show_package_schema()
         schema.update({ 
                        'modified': [tk.get_converter('convert_from_extras'), tk.get_validator('ignore_missing')],
-                       'publisher': [tk.get_converter('convert_from_extras'), tk.get_validator('not_empty') ],
-                       'identifier': [tk.get_converter('convert_from_extras'), tk.get_validator('not_empty')],
-                       'bureau_code': [tk.get_converter('convert_from_extras'), tk.get_validator('not_empty')],
-                       'prog_code': [tk.get_converter('convert_from_extras'), tk.get_validator('not_empty')],
-                       'contact_name': [tk.get_converter('convert_from_extras'), tk.get_validator('not_empty')],
-                       'contact_email': [tk.get_converter('convert_from_extras'), tk.get_validator('not_empty')]
+                       'publisher': [tk.get_converter('convert_from_extras'), tk.get_validator('ignore_missing') ],
+                       'identifier': [tk.get_converter('convert_from_extras'), tk.get_validator('ignore_missing')],
+                       'bureau_code': [tk.get_converter('convert_from_extras'), tk.get_validator('ignore_missing')],
+                       'prog_code': [tk.get_converter('convert_from_extras'), tk.get_validator('ignore_missing')],
+                       'contact_name': [tk.get_converter('convert_from_extras'), tk.get_validator('ignore_missing')],
+                       'contact_email': [tk.get_converter('convert_from_extras'), tk.get_validator('ignore_missing')]
         })
         
         schema['tags']['__extras'].append(tk.get_converter('free_tags_only'))
