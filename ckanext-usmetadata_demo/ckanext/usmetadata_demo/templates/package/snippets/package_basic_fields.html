@@ -1,13 +1,28 @@
 {% ckan_extends %}
 
 {% block package_basic_fields_custom %}
-  {{ form.input('modified', label=_('Modified (Last Updated) *'), id='field-modified', placeholder=_('YYYY-MM-DD'), value=data.modified, error=errors.modified, classes=['control-medium']) }}
-  {{ form.input('publisher', label=_('Publisher (Agency) *'), id='field-publisher', placeholder=_('Agency Name'), value=data.publisher, error=errors.publisher, classes=['control-medium']) }}
-  {{ form.input('identifier', label=_('Identifier (UniqueID) *'), id='field-identifier', placeholder=_('Any random Unique ID'), value=data.identifier, error=errors.identifier, classes=['control-medium']) }}
-  {{ form.input('bureau_code', label=_('Bureau Code *'), id='field-bureau_code', placeholder=_('Bureau Code'), value=data.bureau_code, error=errors.bureau_code, classes=['control-medium']) }}
-  {{ form.input('prog_code', label=_('Program Code *'), id='field-prog_code', placeholder=_('Program Code'), value=data.prog_code, error=errors.prog_code, classes=['control-medium']) }}
-  {{ form.input('contact_name', label=_('Contact Name *'), id='field-contact_name', placeholder=_('First-name Last-name '), value=data.contact_name, error=errors.contact_name, classes=['control-medium']) }}
-  {{ form.input('contact_email', label=_('Contact Email *'), id='field-contact_email', placeholder=_('email ID'), value=data.contact_email, error=errors.contact_email, classes=['control-medium']) }}
-  {#{{ form.input('access_level', label =_('Access Level *'), id='field-access_level', value= h.access_levels(), error=errors.access_level, classes=['control-group']) }}#}
+	<h1><br/>(Optional) “Common Core” Required Fields </h1>
+	<h3><br/> Following fields are related to <a href="https://project-open-data.cio.gov/schema/" target="_blank">Common Core Metadata Schema </a>.</h3>
+  {{ form.input('modified', label=_('Modified (Last Updated) '), id='field-modified', placeholder=_('YYYY-MM-DD'), value=data.modified, error=errors.modified, classes=['control-medium']) }}
+  {{ form.input('publisher', label=_('Publisher (Agency) '), id='field-publisher', placeholder=_('Agency Name'), value=data.publisher, error=errors.publisher, classes=['control-medium']) }}
+  {{ form.input('identifier', label=_('Identifier (UniqueID) '), id='field-identifier', placeholder=_('Any random Unique ID'), value=data.identifier, error=errors.identifier, classes=['control-medium']) }}
+  
+    <div class="control-group">
+    <label class="control-label" for="field-access_level">{{ _("Access Level ") }}</label>
+    <div class="controls">
+      <select id="field-access_level" name="access_level" data-module="autocomplete">
+        {% for access_level in h.access_levels()  %}
+          <option value="{{ access_level }}" {% if access_level in data.get('access_level', []) %}selected="selected"{% endif %}>{{ access_level }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+  
+  {{ form.input('bureau_code', label=_('Bureau Code '), id='field-bureau_code', placeholder=_('Bureau Code'), value=data.bureau_code, error=errors.bureau_code, classes=['control-medium']) }}
+  {{ form.input('prog_code', label=_('Program Code '), id='field-prog_code', placeholder=_('Program Code'), value=data.prog_code, error=errors.prog_code, classes=['control-medium']) }}
+  <h3><br/>Contact Point</h3>
+  {{ form.input('contact_name', label=_('Contact Name '), id='field-contact_name', placeholder=_('First-name Last-name '), value=data.contact_name, error=errors.contact_name, classes=['control-medium']) }}
+  {{ form.input('contact_email', label=_('Contact Email '), id='field-contact_email', placeholder=_('email ID'), value=data.contact_email, error=errors.contact_email, classes=['control-medium']) }}
+  {#{{ form.input('access_level', label =_('Access Level '), id='field-access_level', value= h.access_levels(), error=errors.access_level, classes=['control-group']) }}#}
 {% endblock %}
 
